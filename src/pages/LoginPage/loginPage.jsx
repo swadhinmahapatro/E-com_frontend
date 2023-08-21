@@ -1,8 +1,9 @@
 import React from "react";
-import "./loginPage.style.css";
+
 import Navbar from "../../components/navbar/navbar";
 import LoginPageSvg from "../../assets/loginPageSvg";
 import {Link} from "react-router-dom";
+import Footer from "../../components/footer/footer";
 export default function LoginPage() {
 
   const [userDetail,setUserDetails] = React.useState({
@@ -10,21 +11,19 @@ export default function LoginPage() {
     password:''
   })
   const handleSubmit=()=>{
-
+    console.log(userDetail.email);
+    console.log(userDetail.password);
+    setUserDetails({email:'',password:''});
   }
 
   return (
     <>
-      <div className="topheader">
-        <p>
-          Summer Sale For All Suits And Free Express Delivery - OFF 50% ShopNow{" "}
-        </p>
-      </div>
+      
       <div className="navbarCont">
         <Navbar />
         <div className="container">
           <div className="loginSvg">
-            <LoginPageSvg height={500} width={600} />
+            <LoginPageSvg height={530} width={650} />
             <div className="loginFields">
               <p className="loginText">Login To Exclusive</p>
               <p className="loginSmallText">
@@ -32,16 +31,6 @@ export default function LoginPage() {
               </p>
               <form>
                 <div className="loginInput">
-                  <input
-                    className="SignupFileds"
-                    type="text"
-                    name="name"
-                    value={userDetail.name}
-                    onChange={(e) =>
-                      setUserDetails({ ...userDetail, name: e.target.value })
-                    }
-                    placeholder="Name"
-                  />
                   <input
                     type="email"
                     className="SignupFileds"
@@ -64,15 +53,6 @@ export default function LoginPage() {
                     }
                     placeholder="Password"
                   />
-                  <input
-                    type="date"
-                    className="SignupFileds"
-                    value={userDetail.dob}
-                    onChange={(e) =>
-                      setUserDetails({ ...userDetail, dob: e.target.value })
-                    }
-                    placeholder="Dob"
-                  />
                 </div>
                 </form>
                 <div className="forget">
@@ -81,14 +61,19 @@ export default function LoginPage() {
                   onClick={(e) => {
                     handleSubmit(e);
                   }}
+                  style={{padding: "12px 58px",marginRight: "10px"}}
                 >
-                  Create
+                  Login
                 </button>
+                <Link style={{color: 'var(--secondary-2, #DB4444)'}} to="/signup" className="link">
+                  Forget Password
+                </Link>
                 </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

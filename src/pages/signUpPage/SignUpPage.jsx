@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import "./SignUpPage.style.css";
+
 import LoginPageSvg from "../../assets/loginPageSvg";
 import Navbar from "../../components/navbar/navbar";
 import axios from "../../interceptor/interceptor";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./SignUpPage.style.css";
+import Footer from "../../components/footer/footer";
 export default function SignUpPage() {
   const history = useNavigate();
   const [userDetail, setUserDetails] = useState({
@@ -48,7 +50,7 @@ export default function SignUpPage() {
       </div>
       <div className="container">
         <div className="loginSvg">
-          <LoginPageSvg height={500} width={600} />
+          <LoginPageSvg height={530} width={650} />
           <div className="loginFields">
             <p className="loginText">Login To Exclusive</p>
             <p className="loginSmallText">
@@ -113,6 +115,7 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

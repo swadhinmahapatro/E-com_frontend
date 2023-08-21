@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  .mainContainer {
+    display: flex;
+    justify-content: space-around;
+  }
+  .topheader {
+    text-align: center;
+    background-color: black;
+    height: 48px;
+    font-family: Poppins;
+    font-size: 14px;
+    padding: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    word-spacing: 2px;
+    color: var(--text, #fafafa);
+  }
+  .links {
+    display: flex;
+    gap: 3rem;
+  }
+  .linkText {
+    text-decoration: none;
+    color: #000000;
+    font-size: 15px;
+  }
+  .logo p {
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.72px;
+  }
+  .linkText.active {
+    border-bottom: 1px solid #808080;
+  }
+  .linkText:not(.active) {
+    border-bottom: none;
+  }
