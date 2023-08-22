@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Navbar from "../../components/navbar/navbar";
+import { ThreeDots } from "react-loader-spinner";
 import LoginPageSvg from "../../assets/loginPageSvg";
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/footer";
+import axios from "../../interceptor/interceptor";
+import { toast } from "react-toastify";
+import CustomToast from "../../components/toast/toast";
 export default function LoginPage() {
-
-  const [userDetail,setUserDetails] = React.useState({
-    email:'',
-    password:''
-  })
-  const handleSubmit=()=>{
-    console.log(userDetail.email);
-    console.log(userDetail.password);
-    setUserDetails({email:'',password:''});
-  }
+  const navigation = useNavigate();
+  const [userDetail, setUserDetails] = React.useState({
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    axios.post("/login", userDetail).then((res) => {
+      if (res.status === 200) {
+        setLoading(false);
+        localStorage.setItem("user-info", "user");
+        navigation("/home");
+        console.log(res);
+        CustomToast({type:"success",message:res.data.message})
+      }
+    }).catch((err)=>{
+      setLoading(false);
+      CustomToast({type:"error",message:err.response.data.message})  
+    });
+    setUserDetails({ email: "", password: "" });
+  };
 
   return (
     <>
-      
       <div className="navbarCont">
         <Navbar />
         <div className="container">
@@ -54,26 +70,34 @@ export default function LoginPage() {
                     placeholder="Password"
                   />
                 </div>
-                </form>
-                <div className="forget">
+              </form>
+              <div className="forget">
                 <button
                   className="submit"
                   onClick={(e) => {
                     handleSubmit(e);
                   }}
-                  style={{padding: "12px 58px",marginRight: "10px"}}
+                  style={{ padding: "12px 58px", marginRight: "10px" }}
                 >
-                  Login
+                  {loading ? (
+                    <ThreeDots color="white" height={20} width={40} />
+                  ) : (
+                    "Login"
+                  )}
                 </button>
-                <Link style={{color: 'var(--secondary-2, #DB4444)'}} to="/signup" className="link">
+                <Link
+                  style={{ color: "var(--secondary-2, #DB4444)" }}
+                  to="/signup"
+                  className="link"
+                >
                   Forget Password
                 </Link>
-                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

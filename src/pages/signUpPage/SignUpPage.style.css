@@ -1,18 +1,5 @@
-.topheader {
-  text-align: center;
-  background-color: black;
-  height: 48px;
-  font-family: Poppins;
-  font-size: 14px;
-  padding: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 21px;
-  word-spacing: 2px;
-  color: var(--text, #fafafa);
-}
 .navbarCont {
-  margin-top: 38px;
+  margin-bottom: 38px;
 }
 .loginSvg {
   display: flex;

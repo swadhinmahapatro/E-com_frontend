@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import LoginPageSvg from "../../assets/loginPageSvg";
 import Navbar from "../../components/navbar/navbar";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./SignUpPage.style.css";
 import Footer from "../../components/footer/footer";
+import CustomToast from "../../components/toast/toast";
 export default function SignUpPage() {
   const history = useNavigate();
   const [userDetail, setUserDetails] = useState({
@@ -15,6 +16,12 @@ export default function SignUpPage() {
     password: "",
     number: "",
     dob: "",
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem("user-info")) {
+      history("/");
+    }
   });
 
   const handleSubmit = (event) => {
@@ -28,23 +35,21 @@ export default function SignUpPage() {
         number: userDetail.number,
         dob: userDetail.dob,
       })
-      .then((response) => {
-        console.log(response.data.message);
+      .then((res) => {
+        if (res.status === 200) {
+          CustomToast({ type: "success", message: res.data.message });
+          localStorage.setItem("user-info", "user");
+          history("/");
+        }
       })
       .catch((error) => {
+        CustomToast({ type: "error", message: error.response.data.message });
         console.log(error);
       });
-    localStorage.setItem("user-info", "user");
-    history("/");
   };
 
   return (
     <>
-      <div className="topheader">
-        <p>
-          Summer Sale For All Suits And Free Express Delivery - OFF 50% ShopNow{" "}
-        </p>
-      </div>
       <div className="navbarCont">
         <Navbar />
       </div>
@@ -88,6 +93,16 @@ export default function SignUpPage() {
                   placeholder="Password"
                 />
                 <input
+                  className="SignupFileds"
+                  type="text"
+                  name="name"
+                  value={userDetail.number}
+                  onChange={(e) =>
+                    setUserDetails({ ...userDetail, number: e.target.value })
+                  }
+                  placeholder="Phone Number"
+                />
+                <input
                   type="date"
                   className="SignupFileds"
                   value={userDetail.dob}
@@ -115,7 +130,7 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
