@@ -125,6 +125,7 @@
 .custom-searchandwatchandCart{
   display: flex;
   justify-content: center;
+  gap:2.5rem;
 }
 
 .custom-sidebarLinks  {
@@ -137,6 +138,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  margin-right: 2rem;
 }
 .custom-input  input{
   border: none;

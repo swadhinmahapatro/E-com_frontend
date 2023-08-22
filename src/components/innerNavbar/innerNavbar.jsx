@@ -6,7 +6,6 @@ import { CloseCircle } from "iconsax-react";
 import { SearchStatus1 } from "iconsax-react";
 import { Heart } from "iconsax-react";
 import { ShoppingCart } from "iconsax-react";
-
 export default function InnerNavbar() {
   const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState(null);
@@ -14,6 +13,8 @@ export default function InnerNavbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // State for sidebar
   const [showlogout, setshowlogout] = useState(false);
+
+  const sidebarRef = React.useRef(null);
 
   useEffect(() => {
     const handleresize = () => {
@@ -26,12 +27,28 @@ export default function InnerNavbar() {
       window.removeEventListener("resize", handleresize);
     };
   }, [isSidebarOpen]);
+
   useEffect(() => {
     const user = localStorage.getItem("user-info");
     if (user) {
       setshowlogout(true);
     }
   }, []);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
 
   const handleLinkClick = (linkIndex) => {
     setActiveLink(linkIndex);
@@ -51,6 +68,7 @@ export default function InnerNavbar() {
     setshowlogout(false);
     navigate('/');
   }
+
   return (
     <>
       <div className="custom-topheader">
@@ -64,7 +82,7 @@ export default function InnerNavbar() {
         </div>
         {/* Sidebar */}
         {isSidebarOpen && (
-          <div className="custom-sidebar">
+          <div className="custom-sidebar" ref={sidebarRef}>
             <div className="custom-sidebarHeader ">
               <CloseCircle
                 variant="Broken"
@@ -208,7 +226,7 @@ export default function InnerNavbar() {
             </div>
             <div className="icons">
               <Heart
-                style={{ marginRight: "15px" }}
+                style={{ marginRight: "2rem" }}
                 className="hearticon"
                 size={24}
                 color="#000000"
