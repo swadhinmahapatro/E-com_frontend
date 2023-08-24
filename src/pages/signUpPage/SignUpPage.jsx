@@ -22,7 +22,7 @@ export default function SignUpPage() {
     if (localStorage.getItem("user-info")) {
       history("/");
     }
-  });
+  },[]);
 
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission

@@ -1,35 +1,45 @@
-import React, { useState } from "react";
-
+import React, {useEffect} from "react";
 import Navbar from "../../components/navbar/navbar";
 import { ThreeDots } from "react-loader-spinner";
 import LoginPageSvg from "../../assets/loginPageSvg";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/footer";
-import axios from "../../interceptor/interceptor";
 import { toast } from "react-toastify";
 import CustomToast from "../../components/toast/toast";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, resetAuth, resetAuthState } from "../../redux/actions/authAction";
+
 export default function LoginPage() {
   const navigation = useNavigate();
   const [userDetail, setUserDetails] = React.useState({
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.user.loading);
+  const error = useSelector(state => state.user.error);
+  const userInfo = useSelector(state => state.user.userInfo);
+
+  useEffect(() => {
+    dispatch(resetAuth());
+  }, []);
+
+  useEffect(()=>{
+    if(userInfo){
+      navigation("/home");
+    }
+  },[userInfo,navigation]);
+
+  useEffect(()=>{
+    if(localStorage.getItem("user-info")){
+      navigation("/home");
+    }
+  })
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    axios.post("/login", userDetail).then((res) => {
-      if (res.status === 200) {
-        setLoading(false);
-        localStorage.setItem("user-info", "user");
-        navigation("/home");
-        console.log(res);
-        CustomToast({type:"success",message:res.data.message})
-      }
-    }).catch((err)=>{
-      setLoading(false);
-      CustomToast({type:"error",message:err.response.data.message})  
-    });
+    dispatch(loginUser(userDetail));
     setUserDetails({ email: "", password: "" });
   };
 
@@ -45,12 +55,15 @@ export default function LoginPage() {
               <p className="loginSmallText">
                 Enter your email and password below
               </p>
-              <form>
+              <form autoComplete="on">
                 <div className="loginInput">
                   <input
                     type="email"
+                    name="email"
+                    id="email"
                     className="SignupFileds"
                     value={userDetail.email}
+                    autoComplete="on"
                     onChange={(e) =>
                       setUserDetails({ ...userDetail, email: e.target.value })
                     }
@@ -58,7 +71,10 @@ export default function LoginPage() {
                   />
 
                   <input
+                    autoComplete="on"
                     type="password"
+                    name="password"
+                    id="password"
                     className="SignupFileds"
                     value={userDetail.password}
                     onChange={(e) =>

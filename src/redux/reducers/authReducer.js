@@ -1,9 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState={
-    userInfoInfo:null,
+    userInfo:null,
     loading:false,
     error:null,
+
 };
 const authSlice=createSlice({
     name:"auth",
@@ -24,8 +25,9 @@ const authSlice=createSlice({
             state.error=action.payload;
             state.loading=false;
         },
+        resetAuthState:()=>initialState,
     },
 });
 
-export const {loginSuccess,loginFailure}=authSlice.actions;
+export const {loginSuccess,loginFailure,loginStart,resetAuthState}=authSlice.actions;
 export default authSlice.reducer;
