@@ -83,6 +83,11 @@
 .watchlist,.cart{
   display: none;
 }
+@media screen and (max-width: 900px) {
+  .custom-logo {
+    display: none;
+  }
+}
 
 @media screen and (max-width: 398px) {
   .icons{

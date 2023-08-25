@@ -1,0 +1,121 @@
+.optionsAndcursole {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+.options {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 3rem;
+  border-right: 1px solid #777;
+  padding-right: 3rem;
+}
+
+.links {
+  text-decoration: none;
+  font-family: Poppins;
+  color: var(--text-2, #000);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+@media screen and (max-width: 974px) {
+  .links {
+    display: none;
+  }
+  .options {
+    border: none;
+  }
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+  padding: 2rem 8rem;
+}
+
+.dayinner {
+  display: flex;
+  gap: 30px;
+}
+.slider {
+  display: flex;
+  gap: 30px;
+  cursor: pointer;
+}
+.time {
+  display: flex;
+  gap: 30px;
+}
+
+.days {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+.todaytext {
+  padding-left: 5px;
+  color: var(--secondary-2, #db4444);
+  border-radius: 4px;
+  border:2px solid #db4444;
+  border-bottom: none;
+  border-top: none;
+  border-right: none;
+  border-left-width:12px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+.flashtext {
+  color: var(--text-2, #000);
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: 1.44px;
+}
+.timeheadText {
+  color: var(--text-2, #000);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+}
+.timebodyText {
+  color: var(--text-2, #000);
+
+  /* Heading/32PX Bold */
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 93.75% */
+  letter-spacing: 1.28px;
+}
+.products {
+  /* padding: 0 2rem; */
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1130px) {
+  .products {
+    justify-content: flex-start;
+  }
+}
+@media screen and (max-width: 857px) {
+  .products {
+    justify-content: center;
+  }
+}
+.catagories{
+  padding:2rem;
+}
