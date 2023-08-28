@@ -8,6 +8,7 @@
   position: relative;
 }
 
+
 .discount {
   position: absolute;
   display: inline-flex;
@@ -82,4 +83,39 @@
   font-weight: 500;
   line-height: 24px;
   text-decoration-line: strikethrough;
+}
+.addToCart {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.root:hover .addToCart {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.addToCartButton {
+  border: 1px solid antiquewhite;
+  border-radius: 4px;
+  background-color: #000000;
+  color: var(--text, #fafafa);
+  padding: 4px 8px;
+  width: 60%;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.addToCartButton:hover {
+  background-color: var(--secondary-2, #db4444);
 }

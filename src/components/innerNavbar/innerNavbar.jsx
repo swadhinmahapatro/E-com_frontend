@@ -65,6 +65,7 @@ export default function InnerNavbar() {
   };
   const handlelogout=()=>{
     localStorage.removeItem('user-info');
+    // localStorage.removeItem("authToken");
     setshowlogout(false);
     navigate('/');
   }

@@ -6,19 +6,22 @@ import SignUpPage from "./pages/signUpPage/SignUpPage";
 import HomePage from "./pages/HomePage/HomePage";
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
+import { ProductProvider } from "./hooks/ProductContext";
 
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/home" element={<HomePage />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <ProductProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ToastContainer />
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/home" element={<HomePage />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </ProductProvider>
   );
 }
 

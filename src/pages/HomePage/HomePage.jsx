@@ -9,79 +9,35 @@ import { SidebarRight } from "iconsax-react";
 import { ArrowLeft2 } from "iconsax-react";
 import { ArrowRight2 } from "iconsax-react";
 import BrowseField from "../../components/BrowseFIeld/BrowseField";
+import { useDispatch, useSelector } from "react-redux";
+import Avatar from '@mui/material/Avatar';
+import { getProducts } from "../../redux/actions/productAction";
+import { useProductContext } from "../../hooks/ProductContext";
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const [product, setProducts] = useState([
-    {
-      name: "havit hv-g92 Gamepad",
-      price: 100,
-      image:
-        "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg",
-      rating: 4,
-      numReviews: 60,
-      discount: "40%",
-    },
-    {
-      name: "havit hv-g92 Gamepad",
-      price: 100,
-      image:
-        "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg",
-      rating: 4,
-      numReviews: 50,
-      discount: "40%",
-    },
-    {
-      name: "havit hv-g92 Gamepad",
-      price: 100,
-      image:
-        "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg",
-      rating: 4,
-      numReviews: 40,
-      discount: "40%",
-    },
-    {
-      name: "havit hv-g92 Gamepad",
-      price: 100,
-      image:
-        "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg",
-      rating: 4,
-      numReviews: 30,
-      discount: "40%",
-    },
-    {
-      name: "havit hv-g92 Gamepad",
-      price: 100,
-      image:
-        "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg",
-      rating: 4,
-      numReviews: 20,
-      discount: "40%",
-    },
-    {
-      name: "havit hv-g92 Gamepad",
-      price: 100,
-      image:
-        "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg",
-      rating: 4,
-      numReviews: 10,
-      discount: "40%",
-    },
-    {
-      name: "havit hv-g92 Gamepad",
-      price: 100,
-      image:
-        "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg",
-      rating: 4,
-      numReviews: 5,
-      discount: "40%",
-    },
-  ]);
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.product.loading);
+  const ProductData = useSelector((state) => state.product.products);
+  const [product, setProducts] = useState([]);
+  const { selectedType } = useProductContext();
+
   useEffect(() => {
     if (!localStorage.getItem("user-info")) {
       navigate("/");
     }
-  });
+  }, []);
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
+  useEffect(() => {
+    if (ProductData) {
+      setProducts(ProductData);
+    }
+  }, [ProductData]);
+
   const [currentPage, setCurrentPage] = useState(0);
   const productsPerPage = 4; // Number of products per page
   const totalPages = Math.ceil(product.length / productsPerPage);
@@ -136,6 +92,7 @@ export default function HomePage() {
       clearInterval(interval);
     };
   }, []);
+  const [viewPreoducts, SetViewProducts] = React.useState(false);
 
   // Display the timeLeft in your UI
   console.log(timeLeft.hours);
@@ -336,7 +293,7 @@ export default function HomePage() {
                   key={ind}
                   name={ele.name}
                   price={ele.price}
-                  image={ele.image}
+                  image={ele.image_url}
                   rating={ele.rating}
                   numReviews={ele.numReviews}
                   discount={ele.discount}
@@ -345,11 +302,80 @@ export default function HomePage() {
             })}
         </div>
         <div className={styles.catagories}>
-          <div className={styles.todaytext}>catagories</div>
+          <div className={styles.todaytext}>
+            <p>catagories</p>
+          </div>
           <div className={styles.flashtext}>
             <span>Browse By Catagories</span>
           </div>
-          <BrowseField totalField={5} fields={[{ name: "Phones"},{ name: "Laptops"},{ name: "Smart Watches"},{ name: "Gaming"},{ name: "Headphones"}]}/>
+          <BrowseField
+            totalField={5}
+            fields={[
+              { name: "Phones" },
+              { name: "Laptops" },
+              { name: "SmartWatch" },
+              { name: "Gaming" },
+              { name: "HeadPhones" },
+            ]}
+          />
+        </div>
+        <div className={styles.catagories}>
+          <div className={styles.todaytext}>
+            <p>This Month</p>
+          </div>
+          <div className={styles.bestcatg}>
+            <div className={styles.flashtext}>
+              <span>Best Selling Products</span>
+            </div>
+            {!viewPreoducts && (
+              <div>
+                <button
+                  className={styles.viewMore}
+                  onClick={() => {
+                    SetViewProducts(true);
+                  }}
+                >
+                  View More
+                </button>
+              </div>
+            )}
+          </div>
+          {selectedType ? (
+            <div className={styles.products}>
+              {product
+                .filter((ele) => ele.type === selectedType)
+                .slice(0, viewPreoducts ? product?.length : 4)
+                .map((ele, ind) => {
+                  return (
+                    <ProductBody
+                      key={ind}
+                      name={ele.name}
+                      price={ele.price}
+                      image={ele.image_url}
+                      rating={ele.rating}
+                      numReviews={ele.numReviews}
+                    />
+                  );
+                })}
+            </div>
+          ) : (
+            <div className={styles.products}>
+              {product
+                .slice(0, viewPreoducts ? product?.length : 4)
+                .map((ele, ind) => {
+                  return (
+                    <ProductBody
+                      key={ind}
+                      name={ele.name}
+                      price={ele.price}
+                      image={ele.image_url}
+                      rating={ele.rating}
+                      numReviews={ele.numReviews}
+                    />
+                  );
+                })}
+            </div>
+          )}
         </div>
       </div>
     </>

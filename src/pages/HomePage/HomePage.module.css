@@ -27,6 +27,7 @@
   }
   .options {
     border: none;
+    display: none;
   }
 }
 
@@ -59,11 +60,11 @@
   padding-left: 5px;
   color: var(--secondary-2, #db4444);
   border-radius: 4px;
-  border:2px solid #db4444;
+  border: 2px solid #db4444;
   border-bottom: none;
   border-top: none;
   border-right: none;
-  border-left-width:12px;
+  border-left-width: 12px;
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
@@ -78,6 +79,7 @@
   font-weight: 600;
   line-height: 48px;
   letter-spacing: 1.44px;
+  margin-bottom: 1rem;
 }
 .timeheadText {
   color: var(--text-2, #000);
@@ -116,6 +118,36 @@
     justify-content: center;
   }
 }
-.catagories{
-  padding:2rem;
+@media screen and (min-width: 852px) and (max-width: 1247px) {
+  .products {
+    justify-content: center;
+  }
+}
+
+.catagories {
+  padding: 2rem;
+}
+.bestcatg {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+.viewMore {
+  border-radius: 4px;
+  background: var(--button-2, #db4444);
+  display: flex;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--text, #fafafa);
+
+  /* Title/16PX Medium */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
 }
