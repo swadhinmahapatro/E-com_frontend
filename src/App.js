@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
 import { ProductProvider } from "./hooks/ProductContext";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/home" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </BrowserRouter>
       </Provider>

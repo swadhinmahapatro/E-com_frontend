@@ -4,15 +4,19 @@ import styles from "./HomePage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import "./HomePage.style.css";
 import ProductBody from "../../components/ProductBody/productBody";
-import { SidebarLeft } from "iconsax-react";
-import { SidebarRight } from "iconsax-react";
-import { ArrowLeft2 } from "iconsax-react";
-import { ArrowRight2 } from "iconsax-react";
+import Skeleton from "react-loading-skeleton";
+import {
+  SidebarLeft,
+  Apple,
+  SidebarRight,
+  ArrowLeft2,
+  ArrowRight2,
+} from "iconsax-react";
 import BrowseField from "../../components/BrowseFIeld/BrowseField";
 import { useDispatch, useSelector } from "react-redux";
-import Avatar from '@mui/material/Avatar';
 import { getProducts } from "../../redux/actions/productAction";
 import { useProductContext } from "../../hooks/ProductContext";
+import { width } from "@mui/system";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -21,15 +25,11 @@ export default function HomePage() {
   const ProductData = useSelector((state) => state.product.products);
   const [product, setProducts] = useState([]);
   const { selectedType } = useProductContext();
-
-  useEffect(() => {
-    if (!localStorage.getItem("user-info")) {
-      navigate("/");
-    }
-  }, []);
+  const [previousSelectedType, setPreviousSelectedType] = useState(null);
 
   useEffect(() => {
     dispatch(getProducts());
+    setPreviousSelectedType(selectedType);
   }, []);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function HomePage() {
   }, [ProductData]);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const productsPerPage = 4; // Number of products per page
+  const productsPerPage = 3; // Number of products per page
   const totalPages = Math.ceil(product.length / productsPerPage);
 
   const handlePrevious = () => {
@@ -92,12 +92,18 @@ export default function HomePage() {
       clearInterval(interval);
     };
   }, []);
-  const [viewPreoducts, SetViewProducts] = React.useState(false);
+  const [viewPreoducts, SetViewProducts] = React.useState({
+    type: false,
+    by: "",
+  });
+
+  useEffect(() => {
+    console.log(selectedType, "selec");
+    console.log(previousSelectedType, "prev");
+    SetViewProducts({ ...viewPreoducts, by: "" });
+  }, [selectedType]);
 
   // Display the timeLeft in your UI
-  console.log(timeLeft.hours);
-  console.log(timeLeft.minutes);
-  console.log(timeLeft.seconds);
 
   return (
     <>
@@ -154,58 +160,94 @@ export default function HomePage() {
               </div>
               <div className="carousel-inner">
                 <div className="carousel-item active" data-bs-interval="1000">
-                  <svg
-                    className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                    width="800"
-                    height="400"
-                    xmlns="http://www.w3.org/2000/svg"
-                    role="img"
-                    aria-label="Placeholder: First slide"
-                    preserveAspectRatio="xMidYMid slice"
-                    focusable="false"
-                  >
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777"></rect>
-                    <text x="50%" y="50%" fill="#555" dy=".3em">
-                      First slide
-                    </text>
-                  </svg>
+                  <div className={styles.cursoleItemOuter}>
+                    <div className={styles.firstPhase}>
+                      <div className={styles.productName}>
+                        <Apple size={42} color="#ffff" variant="Bold" />&nbsp;
+                        <span className={styles.productNameText}>iPhone 14 Series</span>
+                      </div>
+                      <div className={styles.discountPhase}>
+                        <p className={styles.discountText}>Up to 10% off Voucher</p>
+                      </div>
+                      <button className={styles.shopNowButton}>
+                        <span className={styles.shopNowText}>Shop Now</span>
+                        <ArrowRight2
+                          size={24}
+                          color="#fff"
+                          strokeWidth={0.5}
+                          variant="Linear"
+                        />
+                      </button>
+                    </div>
+                    <div className={styles.ImagePhase}>
+                      <img
+                        src={
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUvhl4p19gdc9UQ5t3s0oR1aBgRZN-6mfUwmJ_vQwv&s"
+                        }
+                        alt="iphone"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="carousel-item" data-bs-interval="1000">
-                  <svg
-                    className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                    width="800"
-                    height="400"
-                    xmlns="http://www.w3.org/2000/svg"
-                    role="img"
-                    aria-label="Placeholder: Second slide"
-                    preserveAspectRatio="xMidYMid slice"
-                    focusable="false"
-                  >
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#666"></rect>
-                    <text x="50%" y="50%" fill="#444" dy=".3em">
-                      Second slide
-                    </text>
-                  </svg>
+                <div className={styles.cursoleItemOuter}>
+                <div className={styles.firstPhase}>
+                  <div className={styles.productName}>
+                    <Apple size={42} color="#ffff" variant="Bold" />&nbsp;
+                    <span className={styles.productNameText}>iPhone 14 Series</span>
+                  </div>
+                  <div className={styles.discountPhase}>
+                    <p className={styles.discountText}>Up to 10% off Voucher</p>
+                  </div>
+                  <button className={styles.shopNowButton}>
+                    <span className={styles.shopNowText}>Shop Now</span>
+                    <ArrowRight2
+                      size={24}
+                      color="#fff"
+                      strokeWidth={0.5}
+                      variant="Linear"
+                    />
+                  </button>
+                </div>
+                <div className={styles.ImagePhase}>
+                  <img
+                    src={
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUvhl4p19gdc9UQ5t3s0oR1aBgRZN-6mfUwmJ_vQwv&s"
+                    }
+                    alt="iphone"
+                  />
+                </div>
+              </div>
                 </div>
                 <div className="carousel-item" ata-bs-interval="1000">
-                  <svg
-                    className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                    width="800"
-                    height="400"
-                    xmlns="http://www.w3.org/2000/svg"
-                    role="img"
-                    aria-label="Placeholder: Third slide"
-                    preserveAspectRatio="xMidYMid slice"
-                    focusable="false"
-                  >
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#555"></rect>
-                    <text x="50%" y="50%" fill="#333" dy=".3em">
-                      Third slide
-                    </text>
-                  </svg>
+                <div className={styles.cursoleItemOuter}>
+                <div className={styles.firstPhase}>
+                  <div className={styles.productName}>
+                    <Apple size={42} color="#ffff" variant="Bold" />&nbsp;
+                    <span className={styles.productNameText}>iPhone 14 Series</span>
+                  </div>
+                  <div className={styles.discountPhase}>
+                    <p className={styles.discountText}>Up to 10% off Voucher</p>
+                  </div>
+                  <button className={styles.shopNowButton}>
+                    <span className={styles.shopNowText}>Shop Now</span>
+                    <ArrowRight2
+                      size={24}
+                      color="#fff"
+                      strokeWidth={0.5}
+                      variant="Linear"
+                    />
+                  </button>
+                </div>
+                <div className={styles.ImagePhase}>
+                  <img
+                    src={
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUvhl4p19gdc9UQ5t3s0oR1aBgRZN-6mfUwmJ_vQwv&s"
+                    }
+                    alt="iphone"
+                  />
+                </div>
+              </div>
                 </div>
               </div>
               <button
@@ -214,12 +256,7 @@ export default function HomePage() {
                 data-bs-target="#carouselExampleInterval"
                 data-bs-slide="prev"
               >
-                <ArrowLeft2
-                  size={24}
-                  color="#000"
-                  strokeWidth={0.5}
-                  variant="Linear"
-                />
+                
               </button>
               <button
                 className="carousel-control-next"
@@ -227,12 +264,7 @@ export default function HomePage() {
                 data-bs-target="#carouselExampleInterval"
                 data-bs-slide="next"
               >
-                <ArrowRight2
-                  size={24}
-                  color="#000"
-                  strokeWidth={0.5}
-                  variant="Linear"
-                />
+                
               </button>
             </div>
           </div>
@@ -319,6 +351,53 @@ export default function HomePage() {
             ]}
           />
         </div>
+
+        {selectedType && (
+          <div className={styles.catagories}>
+            <div className={styles.todaytext}>
+              <p>
+                {selectedType === "smartwatch"
+                  ? `${selectedType}es`
+                  : `${selectedType}s`}
+              </p>
+            </div>
+            <div className={styles.bestcatg}>
+              <div className={styles.flashtext}>
+                <span>Selcted Catagory</span>
+              </div>
+              {previousSelectedType !== selectedType && (
+                <div>
+                  <button
+                    className={styles.viewMore}
+                    onClick={() => {
+                      SetViewProducts({ ...viewPreoducts, by: "selected" });
+                      setPreviousSelectedType(selectedType);
+                    }}
+                  >
+                    View More
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className={styles.products}>
+              {product
+                .filter((ele) => ele.type === selectedType)
+                .slice(0, viewPreoducts.by === "selected" ? product?.length : 3)
+                .map((ele, ind) => {
+                  return (
+                    <ProductBody
+                      key={ind}
+                      name={ele.name}
+                      price={ele.price}
+                      image={ele.image_url}
+                      rating={ele.rating}
+                      numReviews={ele.numReviews}
+                    />
+                  );
+                })}
+            </div>
+          </div>
+        )}
         <div className={styles.catagories}>
           <div className={styles.todaytext}>
             <p>This Month</p>
@@ -327,12 +406,15 @@ export default function HomePage() {
             <div className={styles.flashtext}>
               <span>Best Selling Products</span>
             </div>
-            {!viewPreoducts && (
+            {!viewPreoducts.type && (
               <div>
                 <button
                   className={styles.viewMore}
                   onClick={() => {
-                    SetViewProducts(true);
+                    SetViewProducts({
+                      ...viewPreoducts,
+                      type: true,
+                    });
                   }}
                 >
                   View More
@@ -340,42 +422,23 @@ export default function HomePage() {
               </div>
             )}
           </div>
-          {selectedType ? (
-            <div className={styles.products}>
-              {product
-                .filter((ele) => ele.type === selectedType)
-                .slice(0, viewPreoducts ? product?.length : 4)
-                .map((ele, ind) => {
-                  return (
-                    <ProductBody
-                      key={ind}
-                      name={ele.name}
-                      price={ele.price}
-                      image={ele.image_url}
-                      rating={ele.rating}
-                      numReviews={ele.numReviews}
-                    />
-                  );
-                })}
-            </div>
-          ) : (
-            <div className={styles.products}>
-              {product
-                .slice(0, viewPreoducts ? product?.length : 4)
-                .map((ele, ind) => {
-                  return (
-                    <ProductBody
-                      key={ind}
-                      name={ele.name}
-                      price={ele.price}
-                      image={ele.image_url}
-                      rating={ele.rating}
-                      numReviews={ele.numReviews}
-                    />
-                  );
-                })}
-            </div>
-          )}
+
+          <div className={styles.products}>
+            {product
+              .slice(0, viewPreoducts.type ? product?.length : 4)
+              .map((ele, ind) => {
+                return (
+                  <ProductBody
+                    key={ind}
+                    name={ele.name}
+                    price={ele.price}
+                    image={ele.image_url}
+                    rating={ele.rating}
+                    numReviews={ele.numReviews}
+                  />
+                );
+              })}
+          </div>
         </div>
       </div>
     </>

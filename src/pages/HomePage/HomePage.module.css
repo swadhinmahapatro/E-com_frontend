@@ -134,6 +134,64 @@
   gap: 1rem;
   align-items: center;
 }
+.cursoleItemOuter {
+  width: auto;
+  height: 300px;
+  background-color: #000000;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+}
+.discountText {
+  color: var(--text, #fafafa);
+
+  width: 65%;
+  /* Heading/48PX SemiBold */
+  font-family: Inter;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 60px; /* 125% */
+  letter-spacing: 1.92px;
+}
+.shopNowButton {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  
+}
+.shopNowText {
+  color: var(--text, #fafafa);
+  text-align: center;
+  /* Title/16PX Medium */
+  font-family: Poppins;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  border-bottom:1px solid #fafafa;
+   /* 150% */
+}
+.productNameText {
+  color: var(--text, #fafafa);
+  text-align: center;
+
+  /* Title/16PX Regular */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+.firstPhase {
+}
+.productName {
+  display: flex;
+  align-items: center;
+}
 .viewMore {
   border-radius: 4px;
   background: var(--button-2, #db4444);
