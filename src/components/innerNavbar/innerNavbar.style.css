@@ -71,15 +71,9 @@
   display: none;
   padding: 0 1rem;
 }
-@media screen and (max-width: 867px) {
-  .custom-links {
-    display: none;
-  }
-  .custom-avtar {
+@media screen and (max-width: 878px) {
+  .custom-links,.custom-avtar,.custom-logo  {
     display: none !important;
-  }
-  .custom-logo {
-    display: none;
   }
   .custom-mainContainer {
     justify-content: flex-start;
@@ -99,7 +93,7 @@
 .cart {
   display: none;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1016px) {
   .custom-logo {
     display: none;
   }

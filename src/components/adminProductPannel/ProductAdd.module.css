@@ -1,0 +1,122 @@
+.mainCOntainer {
+  padding: 2rem 3rem;
+}
+
+.productNAme,
+.productPrice,
+.productDesc,
+.productfile,
+.productType {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.labels {
+  color: var(--Text2, #000);
+
+  /* Title/16PX Regular */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+.input {
+  flex-shrink: 0;
+  border-radius: 4px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: var(--Text2, #000);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  width: 330px;
+  padding: 0 1rem;
+  opacity: 0.8;
+  line-height: 24px; /* 150% */
+  background: var(--Secondary, #f5f5f5);
+}
+.addProduct {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+.addproductText {
+  color: var(--Secondary-2, #db4444);
+
+  /* Title/20PX Medium */
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+  text-align: center;
+}
+
+.cancelbutton {
+  outline: none;
+  border: none;
+}
+.cancelbutton:hover,
+.saveButton:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.saveButton {
+  display: flex;
+  padding: 6px 30px;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--Button2, #db4444);
+}
+.cancelText {
+  color: var(--Text2, #000);
+
+  /* Title/16PX Regular */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+.saveText {
+  color: var(--Text, #fafafa);
+
+  /* Title/16PX Medium */
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+@media screen and (max-width: 438px) {
+    .input{
+      width: 100%;
+    }
+  }
+@media screen and (max-width: 286px) {
+  .saveButton {
+    padding: 11px 5px;
+  }
+  .routeName {
+    font-size: 12px;
+  }
+  .welcomeText {
+    font-size: 10px;
+  }
+  .input {
+    font-size: 14px;
+  }
+}

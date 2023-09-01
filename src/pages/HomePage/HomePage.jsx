@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/actions/productAction";
 import { useProductContext } from "../../hooks/ProductContext";
 import { width } from "@mui/system";
+import { resetProductState } from "../../redux/reducers/productReducer";
+import { resetUserDataFetch } from "../../redux/actions/profileAction";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -35,6 +37,7 @@ export default function HomePage() {
   useEffect(() => {
     if (ProductData) {
       setProducts(ProductData);
+      // resetProductState();
     }
   }, [ProductData]);
 

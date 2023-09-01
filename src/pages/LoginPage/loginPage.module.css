@@ -1,7 +1,3 @@
-
-.navbarCont {
-  margin-top: 38px;
-}
 .loginSvg {
   display: flex;
   flex-wrap: wrap;
@@ -23,7 +19,7 @@
 .loginInput {
   display: flex;
   flex-direction: column;
-  gap: 2.6rem;
+  gap: 2rem;
 }
 
 .loginSmallText {
@@ -64,7 +60,11 @@
   border-right: none;
   border-bottom: 0.5px solid #808080;
 }
-
+.submit:hover,
+.link:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
 .submit {
   border-radius: 4px;
   padding: 12px 48px;
@@ -76,9 +76,9 @@
   font-weight: 500;
   line-height: 24px;
   margin-top: 1.4rem;
-  
+  border: none;
 }
-.link{
+.link {
   color: var(--text-2, #000);
   font-family: Poppins;
   font-size: 16px;
@@ -86,4 +86,14 @@
   font-weight: 500;
   line-height: 24px;
   opacity: 0.7;
+}
+.errorField {
+  color: red;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  opacity: 0.7;
+  margin-top: -1.5rem;
 }

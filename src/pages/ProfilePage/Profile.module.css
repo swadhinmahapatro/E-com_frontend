@@ -1,0 +1,155 @@
+.mainContainer {
+  padding: 0 2rem;
+}
+.routeName {
+  color: var(--Text2, #000);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  margin-bottom: 3rem;
+}
+.locationAndWelcome {
+  display: flex;
+  justify-content: space-between;
+}
+.welcomeText {
+  color: var(--Text2, #000);
+
+  /* Title/14PX Regular */
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 150% */
+}
+.input {
+  flex-shrink: 0;
+  border-radius: 4px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: var(--Text2, #000);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  width: 330px;
+  padding: 0 1rem;
+  opacity: 0.8;
+  line-height: 24px; /* 150% */
+  background: var(--Secondary, #f5f5f5);
+}
+.nameAndEmail {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+}
+
+.name,
+.email,
+.password,
+.datePicker {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.passwordAndDob {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.labels {
+  color: var(--Text2, #000);
+
+  /* Title/16PX Regular */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+.cancelbutton {
+  outline: none;
+  border: none;
+}
+.cancelbutton:hover,
+.saveButton:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.saveButton {
+  display: flex;
+  padding: 11px 30px;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--Button2, #db4444);
+}
+.cancelText {
+  color: var(--Text2, #000);
+
+  /* Title/16PX Regular */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+.saveText {
+  color: var(--Text, #fafafa);
+
+  /* Title/16PX Medium */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.editProfile {
+  color: var(--Secondary-2, #db4444);
+
+  /* Title/20PX Medium */
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+  text-align: center;
+}
+.manageAccount{
+  margin-top: 4rem;
+}
+@media screen and (max-width: 438px) {
+  .input{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 286px) {
+    .saveButton{
+      padding: 11px 5px;
+    }
+    .routeName{
+      font-size: 12px;
+    }
+    .welcomeText{
+      font-size: 10px;
+    }
+    .input{
+      font-size: 14px;
+    }
+}

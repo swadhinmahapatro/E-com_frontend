@@ -25,10 +25,12 @@ export const loginUser = (user) => {
       } else {
         dispatch(loginFailure(res.data.message));
         CustomToast({ type: "error", message: res.data.message });
+        // console.log(res);
       }
     } catch (err) {
-      dispatch(loginFailure(err.message));
-      CustomToast({ type: "error", message: err.message })
+      dispatch(loginFailure(err.response.data.message));
+      CustomToast({ type: "error", message: err.response.data.message})
+      console.log();
     }
   };
 };

@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "react-datepicker/dist/react-datepicker.css";
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 

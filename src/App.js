@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "./redux/configureStore";
 import { ProductProvider } from "./hooks/ProductContext";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </BrowserRouter>
       </Provider>

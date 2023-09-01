@@ -13,7 +13,7 @@ import {
 } from "iconsax-react";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-export default function InnerNavbar() {
+export default function InnerNavbar({ showSearch }) {
   const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState(null);
 
@@ -244,21 +244,23 @@ export default function InnerNavbar() {
             </Link>
           )}
           <div className="custom-searchandwatchandCart">
-            <div className="custom-input">
-              <input
-                type="text"
-                name="search"
-                placeholder="what are you looking for?"
-                id=""
-              />
-              <SearchStatus1
-                className="custom-searchicon"
-                size={24}
-                color="#0f0f0f"
-                stroke={0.5}
-                variant="Linear"
-              />
-            </div>
+            {!showSearch && (
+              <div className="custom-input">
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="what are you looking for?"
+                  id=""
+                />
+                <SearchStatus1
+                  className="custom-searchicon"
+                  size={24}
+                  color="#0f0f0f"
+                  stroke={0.5}
+                  variant="Linear"
+                />
+              </div>
+            )}
             <div className="icons">
               <Heart
                 style={{ marginRight: "2rem" }}
@@ -293,7 +295,7 @@ export default function InnerNavbar() {
                 handleClick(e);
               }}
             >
-              {(name?name:"U")}
+              {name ? name : "U"}
             </Avatar>
             <Menu
               style={{ marginTop: "1rem" }}
@@ -306,7 +308,13 @@ export default function InnerNavbar() {
               }}
             >
               <div>
-                <MenuItem onClick={handleClose} className="custom-menu-item ">
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    navigate("/profile");
+                  }}
+                  className="custom-menu-item "
+                >
                   <Profile
                     size={20}
                     color="#000000"
@@ -315,7 +323,13 @@ export default function InnerNavbar() {
                   />
                   &nbsp;Profile
                 </MenuItem>
-                <MenuItem onClick={handleClose} className="custom-menu-item ">
+                <MenuItem
+                  className="custom-menu-item "
+                  onClick={() => {
+                    handleClose();
+                    handlelogout();
+                  }}
+                >
                   {" "}
                   <Logout
                     size={20}
