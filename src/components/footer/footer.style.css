@@ -21,6 +21,8 @@
     border: 1px solid #ffff;
     outline: none;
     background-color: transparent;
+    width: 12rem;
+    padding: 2px 5px
 }
 
 .emailinput::focus {

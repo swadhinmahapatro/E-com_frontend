@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/navbar";
 import { ThreeDots } from "react-loader-spinner";
 import LoginPageSvg from "../../assets/loginPageSvg";
@@ -7,7 +7,11 @@ import Footer from "../../components/footer/footer";
 import { toast } from "react-toastify";
 import CustomToast from "../../components/toast/toast";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, resetAuth, resetAuthState } from "../../redux/actions/authAction";
+import {
+  loginUser,
+  resetAuth,
+  resetAuthState,
+} from "../../redux/actions/authAction";
 
 export default function LoginPage() {
   const navigation = useNavigate();
@@ -16,29 +20,30 @@ export default function LoginPage() {
     password: "",
   });
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.user.loading);
-  const error = useSelector(state => state.user.error);
-  const userInfo = useSelector(state => state.user.userInfo);
+  const loading = useSelector((state) => state.user.loading);
+  const error = useSelector((state) => state.user.error);
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const [validator,setVlidator]=useState()
 
   useEffect(() => {
     dispatch(resetAuth());
   }, []);
 
-  useEffect(()=>{
-    if(userInfo){
+  useEffect(() => {
+    if (userInfo) {
       navigation("/home");
     }
-  },[userInfo,navigation]);
+  }, [userInfo, navigation]);
 
-  useEffect(()=>{
-    if(localStorage.getItem("user-info")){
+  useEffect(() => {
+    if (localStorage.getItem("user-info")) {
       navigation("/home");
     }
-  })
-
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(loginUser(userDetail));
     setUserDetails({ email: "", password: "" });
   };

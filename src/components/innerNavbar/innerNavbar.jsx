@@ -54,13 +54,15 @@ export default function InnerNavbar() {
       setshowlogout(true);
     }
     let name = "";
-    name = JSON.parse(localStorage.getItem("user-info")).name;
-    let arr = name.split(" ");
-    name = "";
-    arr.forEach((item) => {
-      name += item[0];
-    });
-    setName(name);
+    if (localStorage.getItem("user-info")) {
+      name = JSON.parse(localStorage.getItem("user-info")).name;
+      let arr = name.split(" ");
+      name = "";
+      arr.forEach((item) => {
+        name += item[0];
+      });
+      setName(name);
+    }
   }, []);
 
   useEffect(() => {
@@ -92,6 +94,7 @@ export default function InnerNavbar() {
   };
   const handlelogout = () => {
     localStorage.removeItem("user-info");
+    localStorage.removeItem("authToken");
     // localStorage.removeItem("authToken");
     setshowlogout(false);
     navigate("/");
@@ -218,7 +221,9 @@ export default function InnerNavbar() {
           </Link>
 
           <Link
-            className={`custom-linkText ${activeLink === 2 || location.pathname === "/about" ? "active" : ""}`}
+            className={`custom-linkText ${
+              activeLink === 2 || location.pathname === "/about" ? "active" : ""
+            }`}
             onClick={() => handleLinkClick(2)}
             to="/about"
           >
@@ -288,7 +293,7 @@ export default function InnerNavbar() {
                 handleClick(e);
               }}
             >
-              {name}
+              {(name?name:"U")}
             </Avatar>
             <Menu
               style={{ marginTop: "1rem" }}

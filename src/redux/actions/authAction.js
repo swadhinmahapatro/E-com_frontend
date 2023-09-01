@@ -28,6 +28,7 @@ export const loginUser = (user) => {
       }
     } catch (err) {
       dispatch(loginFailure(err.message));
+      CustomToast({ type: "error", message: err.message })
     }
   };
 };

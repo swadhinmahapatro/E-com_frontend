@@ -38,7 +38,6 @@ export default function SignUpPage() {
       .then((res) => {
         if (res.status === 200) {
           CustomToast({ type: "success", message: res.data.message });
-          localStorage.setItem("user-info", "user");
           history("/");
         }
       })

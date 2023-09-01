@@ -1,5 +1,42 @@
-.routePhase{
-    display: flex;
-    justify-content: space-between;
-    
+.routePhase {
+  padding: 0 2rem;
+}
+.firstImage {
+  height: 50%;
+  width: 42%;
+}
+.imageCon {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 4rem;
+}
+.routeName {
+  color: var(--Text2, #000);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  margin-bottom: 3rem;
+}
+.ourStory {
+  color: #000;
+  text-align: justify;
+  font-family: Inter;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 64px;
+  letter-spacing: 3.24px;
+}
+.aboutContent {
+  color: var(--Text2, #000);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  width: 80%;
 }
