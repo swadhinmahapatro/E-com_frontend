@@ -125,37 +125,39 @@ export default function InnerNavbar({ showSearch }) {
             </div>
             <div className="custom-sidebarLinks">
               <Link
-                className={`custom-linkText ${
-                  activeLink === 0 ? "active" : ""
-                }`}
+                className={`custom-linkTextSide ${activeLink === 0 || location.pathname === "/home"
+                    ? "active"
+                    : ""
+                  }`}
                 onClick={() => handleLinkClick(0)}
                 to="/home"
               >
                 Home
               </Link>
               <Link
-                className={`custom-linkText ${
-                  activeLink === 1 ? "active" : ""
-                }`}
+                className={`custom-linkTextSide ${activeLink === 1 ? "active" : ""
+                  }`}
                 onClick={() => handleLinkClick(1)}
                 to="/"
               >
                 Contact
               </Link>
               <Link
-                className={`custom-linkText ${
-                  activeLink === 2 ? "active" : ""
-                }`}
+                className={`custom-linkTextSide ${activeLink === 2 || location.pathname === "/about"
+                    ? "active"
+                    : ""
+                  }`}
                 onClick={() => handleLinkClick(2)}
                 to="/about"
               >
                 About
               </Link>
-              {showlogout && (
+              {!showlogout && (
                 <Link
-                  className={`custom-linkText ${
-                    activeLink === 3 ? "active" : ""
-                  }`}
+                  className={`custom-linkTextSide ${activeLink === 3 || location.pathname === "/signup"
+                      ? "active"
+                      : ""
+                    }`}
                   onClick={() => handleLinkClick(3)}
                   to="/signup"
                 >
@@ -163,22 +165,20 @@ export default function InnerNavbar({ showSearch }) {
                 </Link>
               )}
               <Link
-                className={`custom-linkText  ${
-                  activeLink === 4 || location.pathname === "/watchlist"
+                className={`custom-linkTextSide  ${activeLink === 4 || location.pathname === "/watchlist"
                     ? "active"
                     : ""
-                } watchlist`}
+                  } watchlist`}
                 onClick={() => handleLinkClick(4)}
                 to="/watchlist"
               >
                 watchlist
               </Link>
               <Link
-                className={`custom-linkText ${
-                  activeLink === 5 || location.pathname === "/cart"
+                className={`custom-linkTextSide ${activeLink === 5 || location.pathname === "/cart"
                     ? "active"
                     : ""
-                } cart`}
+                  } cart`}
                 onClick={() => handleLinkClick(5)}
                 to="/cart"
               >
@@ -186,9 +186,18 @@ export default function InnerNavbar({ showSearch }) {
               </Link>
               {showlogout && (
                 <Link
-                  className={`custom-linkText ${
-                    activeLink === 5 ? "active" : ""
-                  }`}
+                  className={`custom-linkTextSide ${activeLink === 3 ? "active" : ""
+                    }`}
+                  onClick={() => handleLinkClick(3)}
+                  to="/profile"
+                >
+                  Profile
+                </Link>
+              )}
+              {showlogout && (
+                <Link
+                  className={`custom-linkTextSide ${activeLink === 5 ? "active" : ""
+                    }`}
                   onClick={() => {
                     handlelogout();
                   }}
@@ -203,9 +212,8 @@ export default function InnerNavbar({ showSearch }) {
         {/* Links */}
         <div className="custom-links">
           <Link
-            className={`custom-linkText ${
-              activeLink === 0 || location.pathname === "/home" ? "active" : ""
-            }`}
+            className={`custom-linkText ${activeLink === 0 || location.pathname === "/home" ? "active" : ""
+              }`}
             onClick={() => handleLinkClick(0)}
             to="/home"
           >
@@ -221,9 +229,8 @@ export default function InnerNavbar({ showSearch }) {
           </Link>
 
           <Link
-            className={`custom-linkText ${
-              activeLink === 2 || location.pathname === "/about" ? "active" : ""
-            }`}
+            className={`custom-linkText ${activeLink === 2 || location.pathname === "/about" ? "active" : ""
+              }`}
             onClick={() => handleLinkClick(2)}
             to="/about"
           >
@@ -232,11 +239,10 @@ export default function InnerNavbar({ showSearch }) {
 
           {!localStorage.getItem("user-info") && (
             <Link
-              className={`custom-linkText ${
-                activeLink === 3 || location.pathname === "/signup"
+              className={`custom-linkText ${activeLink === 3 || location.pathname === "/signup"
                   ? "active"
                   : ""
-              }`}
+                }`}
               onClick={() => handleLinkClick(3)}
               to="/signup"
             >
@@ -261,23 +267,25 @@ export default function InnerNavbar({ showSearch }) {
                 />
               </div>
             )}
-            <div className="icons">
-              <Heart
-                style={{ marginRight: "2rem" }}
-                className="hearticon"
-                size={24}
-                color="#000000"
-                stroke={0.5}
-                variant="Linear"
-              />
-              <ShoppingCart
-                className="carticon"
-                size={24}
-                color="#000000"
-                stroke={0.5}
-                variant="Linear"
-              />
-            </div>
+            {localStorage.getItem("user-info") && (
+              <div className="icons">
+                <Heart
+                  style={{ marginRight: "2rem" }}
+                  className="hearticon"
+                  size={24}
+                  color="#000000"
+                  stroke={0.5}
+                  variant="Linear"
+                />
+                <ShoppingCart
+                  className="carticon"
+                  size={24}
+                  color="#000000"
+                  stroke={0.5}
+                  variant="Linear"
+                />
+              </div>
+            )}
           </div>
           <div className="custom-avtar">
             <Avatar
@@ -297,7 +305,7 @@ export default function InnerNavbar({ showSearch }) {
             >
               {name ? name : "U"}
             </Avatar>
-            <Menu
+            {localStorage.getItem("user-info") && (<Menu
               style={{ marginTop: "1rem" }}
               id="basic-menu"
               anchorEl={anchorEl}
@@ -340,7 +348,7 @@ export default function InnerNavbar({ showSearch }) {
                   &nbsp;Logout
                 </MenuItem>
               </div>
-            </Menu>
+            </Menu>)}
           </div>
         </div>
       </div>

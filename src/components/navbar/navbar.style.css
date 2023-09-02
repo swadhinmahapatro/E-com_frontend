@@ -22,9 +22,11 @@
 .topheader p {
   margin: 0;
 }
+
 .mainContainer {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .links {
   display: flex;
@@ -35,7 +37,7 @@
   color: #000000;
   font-size: 15px;
 }
-.logo p {
+span {
   font-family: Inter;
   font-size: 24px;
   font-style: normal;
@@ -44,7 +46,9 @@
   letter-spacing: 0.72px;
 }
 .linkText.active {
-  border-bottom: 1px solid #808080;
+  border-bottom: 1px solid #db4444;
+  height: fit-content;
+  padding-bottom: 3px;
 }
 .linkText:not(.active) {
   border-bottom: none;
@@ -52,7 +56,7 @@
 .hamburger{
   display: none;
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 560px) {
   .links{
     display: none;
   }

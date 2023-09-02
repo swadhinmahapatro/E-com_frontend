@@ -7,6 +7,8 @@ import {
   userDataFetchSuccess,
 } from "../reducers/profileReducer";
 
+import { updateDataFetchStart, updateDataFetchSuccess, updateDataFetchError, resetupdateUserState } from "../reducers/UserUpdateReducer";
+
 export const getUserData = (id) => {
   return async (dispatch) => {
     try {
@@ -27,16 +29,17 @@ export const getUserData = (id) => {
 export const updateUserData = (id, user) => {
   return async (dispatch) => {
     try {
-      dispatch(userDataFetchStart());
+      dispatch(updateDataFetchStart());
       const res = await axios.post(`/updateuser/${id}`, user);
       if (res.status === 200) {
-        dispatch(userDataFetchSuccess(res.data));
+        dispatch(updateDataFetchSuccess(res.data));
+        CustomToast({type:"success", message: res.data.message});
       } else {
-        dispatch(userDataFetchError(res.data.message));
+        dispatch(updateDataFetchError(res.data.message));
         CustomToast({ type: "error", message: res.data.message });
       }
     } catch (err) {
-      dispatch(userDataFetchError(err.message));
+      dispatch(updateDataFetchError(err.message));
       CustomToast({ type: "error", message: err.message });
     }
   };

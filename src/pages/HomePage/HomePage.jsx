@@ -14,7 +14,7 @@ import {
 } from "iconsax-react";
 import BrowseField from "../../components/BrowseFIeld/BrowseField";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/actions/productAction";
+import { getProducts, resetProductFetch } from "../../redux/actions/productAction";
 import { useProductContext } from "../../hooks/ProductContext";
 import { width } from "@mui/system";
 import { resetProductState } from "../../redux/reducers/productReducer";
@@ -40,6 +40,12 @@ export default function HomePage() {
       // resetProductState();
     }
   }, [ProductData]);
+  
+  useEffect(() => {
+    return () => {
+      dispatch(resetProductFetch());
+    };
+  }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(0);
   const productsPerPage = 3; // Number of products per page
@@ -193,64 +199,64 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="carousel-item" data-bs-interval="1000">
-                <div className={styles.cursoleItemOuter}>
-                <div className={styles.firstPhase}>
-                  <div className={styles.productName}>
-                    <Apple size={42} color="#ffff" variant="Bold" />&nbsp;
-                    <span className={styles.productNameText}>iPhone 14 Series</span>
+                  <div className={styles.cursoleItemOuter}>
+                    <div className={styles.firstPhase}>
+                      <div className={styles.productName}>
+                        <Apple size={42} color="#ffff" variant="Bold" />&nbsp;
+                        <span className={styles.productNameText}>iPhone 14 Series</span>
+                      </div>
+                      <div className={styles.discountPhase}>
+                        <p className={styles.discountText}>Up to 10% off Voucher</p>
+                      </div>
+                      <button className={styles.shopNowButton}>
+                        <span className={styles.shopNowText}>Shop Now</span>
+                        <ArrowRight2
+                          size={24}
+                          color="#fff"
+                          strokeWidth={0.5}
+                          variant="Linear"
+                        />
+                      </button>
+                    </div>
+                    <div className={styles.ImagePhase}>
+                      <img
+                        src={
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUvhl4p19gdc9UQ5t3s0oR1aBgRZN-6mfUwmJ_vQwv&s"
+                        }
+                        alt="iphone"
+                      />
+                    </div>
                   </div>
-                  <div className={styles.discountPhase}>
-                    <p className={styles.discountText}>Up to 10% off Voucher</p>
-                  </div>
-                  <button className={styles.shopNowButton}>
-                    <span className={styles.shopNowText}>Shop Now</span>
-                    <ArrowRight2
-                      size={24}
-                      color="#fff"
-                      strokeWidth={0.5}
-                      variant="Linear"
-                    />
-                  </button>
-                </div>
-                <div className={styles.ImagePhase}>
-                  <img
-                    src={
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUvhl4p19gdc9UQ5t3s0oR1aBgRZN-6mfUwmJ_vQwv&s"
-                    }
-                    alt="iphone"
-                  />
-                </div>
-              </div>
                 </div>
                 <div className="carousel-item" ata-bs-interval="1000">
-                <div className={styles.cursoleItemOuter}>
-                <div className={styles.firstPhase}>
-                  <div className={styles.productName}>
-                    <Apple size={42} color="#ffff" variant="Bold" />&nbsp;
-                    <span className={styles.productNameText}>iPhone 14 Series</span>
+                  <div className={styles.cursoleItemOuter}>
+                    <div className={styles.firstPhase}>
+                      <div className={styles.productName}>
+                        <Apple size={42} color="#ffff" variant="Bold" />&nbsp;
+                        <span className={styles.productNameText}>iPhone 14 Series</span>
+                      </div>
+                      <div className={styles.discountPhase}>
+                        <p className={styles.discountText}>Up to 10% off Voucher</p>
+                      </div>
+                      <button className={styles.shopNowButton}>
+                        <span className={styles.shopNowText}>Shop Now</span>
+                        <ArrowRight2
+                          size={24}
+                          color="#fff"
+                          strokeWidth={0.5}
+                          variant="Linear"
+                        />
+                      </button>
+                    </div>
+                    <div className={styles.ImagePhase}>
+                      <img
+                        src={
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUvhl4p19gdc9UQ5t3s0oR1aBgRZN-6mfUwmJ_vQwv&s"
+                        }
+                        alt="iphone"
+                      />
+                    </div>
                   </div>
-                  <div className={styles.discountPhase}>
-                    <p className={styles.discountText}>Up to 10% off Voucher</p>
-                  </div>
-                  <button className={styles.shopNowButton}>
-                    <span className={styles.shopNowText}>Shop Now</span>
-                    <ArrowRight2
-                      size={24}
-                      color="#fff"
-                      strokeWidth={0.5}
-                      variant="Linear"
-                    />
-                  </button>
-                </div>
-                <div className={styles.ImagePhase}>
-                  <img
-                    src={
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUvhl4p19gdc9UQ5t3s0oR1aBgRZN-6mfUwmJ_vQwv&s"
-                    }
-                    alt="iphone"
-                  />
-                </div>
-              </div>
                 </div>
               </div>
               <button
@@ -259,7 +265,7 @@ export default function HomePage() {
                 data-bs-target="#carouselExampleInterval"
                 data-bs-slide="prev"
               >
-                
+
               </button>
               <button
                 className="carousel-control-next"
@@ -267,7 +273,7 @@ export default function HomePage() {
                 data-bs-target="#carouselExampleInterval"
                 data-bs-slide="next"
               >
-                
+
               </button>
             </div>
           </div>

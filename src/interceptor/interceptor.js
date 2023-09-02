@@ -17,6 +17,7 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
+
 axiosInstance.interceptors.response.use(
   async (response) => {
     // You can perform response-related tasks here if needed
@@ -25,9 +26,19 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     // Handle API errors and log the error message
     console.log("API Error:", error.message); // Logging the error message
+
+    // Log the response data if available
+    if (error.response && error.response.data) {
+      console.log("API Error Response:", error.response.data);
+    }
+
+    // Log the response status if available
+    if (error.response && error.response.status) {
+      console.log("API Error Status:", error.response.status);
+    }
+
     return Promise.reject(error);
   }
 );
-
 
 export default axiosInstance;

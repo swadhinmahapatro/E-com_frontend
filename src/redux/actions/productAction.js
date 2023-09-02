@@ -10,16 +10,15 @@ export const getProducts = () => {
       if (res.status === 200) {
         dispatch(ProductFetchSuccess(res.data.products));
         console.log(res.data.products);
-      }else{
+      } else {
         dispatch(ProdcutFetchError(res.data.message));
         CustomToast({ type: "error", message: res.data.message });
       }
     } catch (error) {
-        dispatch(ProdcutFetchError(error.message));
+      dispatch(ProdcutFetchError(error.message));
     }
   };
 };
-export const resetProductFetch = ()=>(dispatch)=> {
-    dispatch(resetProductState());
+export const resetProductFetch = () => (dispatch) => {
+  dispatch(resetProductState());
 }
-  

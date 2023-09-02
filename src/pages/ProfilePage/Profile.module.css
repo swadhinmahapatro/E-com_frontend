@@ -47,7 +47,6 @@
   margin-bottom: 1rem;
   gap: 1rem;
   flex-wrap: wrap;
-
 }
 
 .name,
@@ -56,7 +55,7 @@
 .datePicker {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
 .passwordAndDob {
@@ -78,6 +77,15 @@
 .cancelbutton {
   outline: none;
   border: none;
+  background: transparent;
+}
+span {
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.72px;
 }
 .cancelbutton:hover,
 .saveButton:hover {
@@ -103,6 +111,17 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
+}
+.errorField {
+  color: red;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  opacity: 0.7;
+  margin-top: -0.6rem;
+  margin-right: 4px;
 }
 .saveText {
   color: var(--Text, #fafafa);
@@ -131,25 +150,25 @@
   line-height: 28px; /* 140% */
   text-align: center;
 }
-.manageAccount{
+.manageAccount {
   margin-top: 4rem;
 }
 @media screen and (max-width: 438px) {
-  .input{
+  .input {
     width: 100%;
   }
 }
 @media screen and (max-width: 286px) {
-    .saveButton{
-      padding: 11px 5px;
-    }
-    .routeName{
-      font-size: 12px;
-    }
-    .welcomeText{
-      font-size: 10px;
-    }
-    .input{
-      font-size: 14px;
-    }
+  .saveButton {
+    padding: 11px 5px;
+  }
+  .routeName {
+    font-size: 12px;
+  }
+  .welcomeText {
+    font-size: 10px;
+  }
+  .input {
+    font-size: 14px;
+  }
 }

@@ -59,6 +59,7 @@
 .cancelbutton {
   outline: none;
   border: none;
+  background: transparent;
 }
 .cancelbutton:hover,
 .saveButton:hover {
